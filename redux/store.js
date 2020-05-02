@@ -1,22 +1,37 @@
-import { createStore, applyMiddleware } from "redux";
-import thunk from "redux-thunk";
-import rootReducer from "./reducers";
-// import setAuthToken from "./utils/setAuthToken";
-
 const initialState = {};
 
+// Imports: Dependencies
+import thunk from "redux-thunk";
+import rootReducer from "./reducer";
+import { AsyncStorage } from "react-native";
+import setAuthToken from "../helper/setAuthToken";
+import { createStore, applyMiddleware } from "redux";
+import { persistStore, persistReducer } from "redux-persist";
+
 const middleware = [thunk];
+// Middleware: Redux Persist Config
+const persistConfig = {
+  // Root?
+  key: "root",
+  // Storage Method (React Native)
+  storage: AsyncStorage,
+  //BlackList
+  blacklist: ["user"],
+};
 
-const store = createStore(
-  // rootReducer,
-  initialState,
-  applyMiddleware(...middleware)
-);
+// Middleware: Redux Persist Persisted Reducer
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-// set up a store subscription listener
-// to store the users token in localStorage
+// Redux: Store
+const store = createStore(persistedReducer, applyMiddleware(...middleware));
 
-// prevent auth error on first run of subscription
+// Middleware: Redux Persist Persister
+let persistor = persistStore(store);
+
+// // set up a store subscription listener
+// // to store the users token in localStorage
+
+// // prevent auth error on first run of subscription
 // let currentState = {
 //   auth: { token: null, isAuthenticated: null, loading: true, user: null },
 // };
@@ -32,4 +47,5 @@ const store = createStore(
 //   }
 // });
 
-export default store;
+// Exports
+export { store, persistor };

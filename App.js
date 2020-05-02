@@ -9,8 +9,10 @@ import { createStackNavigator } from "@react-navigation/stack";
 import BottomTabNavigator from "./navigation/BottomTabNavigator";
 import useLinking from "./navigation/useLinking";
 
-// import { Provider } from "react-redux";
-// import store from "./redux/store";
+//Redux-Persist
+import { Provider } from "react-redux";
+import { store, persistor } from "./redux/store";
+import { PersistGate } from "redux-persist/integration/react";
 
 const Stack = createStackNavigator();
 
@@ -25,7 +27,6 @@ export default function App(props) {
     async function loadResourcesAndDataAsync() {
       try {
         SplashScreen.preventAutoHide();
-
         // Load our initial navigation state
         setInitialNavigationState(await getInitialState());
 
@@ -52,21 +53,23 @@ export default function App(props) {
   } else {
     return (
       <SafeAreaView style={styles.container}>
-        {/* <Provider store={store}> */}
-        {Platform.OS === "ios" && <StatusBar barStyle="default" />}
-        <NavigationContainer
-          ref={containerRef}
-          initialState={initialNavigationState}
-        >
-          <Stack.Navigator
-            screenOptions={{
-              headerShown: false,
-            }}
-          >
-            <Stack.Screen name="Root" component={BottomTabNavigator} />
-          </Stack.Navigator>
-        </NavigationContainer>
-        {/* </Provider> */}
+        <Provider store={store}>
+          <PersistGate loading={null} persistor={persistor}>
+            {Platform.OS === "ios" && <StatusBar barStyle="default" />}
+            <NavigationContainer
+              ref={containerRef}
+              initialState={initialNavigationState}
+            >
+              <Stack.Navigator
+                screenOptions={{
+                  headerShown: false,
+                }}
+              >
+                <Stack.Screen name="Root" component={BottomTabNavigator} />
+              </Stack.Navigator>
+            </NavigationContainer>
+          </PersistGate>
+        </Provider>
       </SafeAreaView>
     );
   }

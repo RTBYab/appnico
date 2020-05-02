@@ -1,12 +1,37 @@
 import React from "react";
-// import { Container, Content } from "native-base";
 import { View } from "react-native";
-import { Dimensions } from "react-native";
+import { imageProfileStyle, viewStyle } from "./style";
+import { Text, Image, TouchableOpacity } from "react-native";
 
-const { height } = Dimensions.get("window");
+const HeaderMarketScreen = ({ navigation }) => {
+  // For Modal Section [isVisible]
 
-const HeaderMarketScreen = () => {
-  return <View style={{ flex: 0.2, backgroundColor: "black" }}></View>;
+  // ImageProfileModal Function
+  const onPresstoggleDrawer = () => navigation.toggleDrawer();
+
+  return (
+    <View style={viewStyle}>
+      <View style={{ flex: 1, alignItems: "center" }}>
+        <Text>Rate</Text>
+        <Text>4.5</Text>
+      </View>
+      <View style={{ flex: 1, alignItems: "center" }}>
+        <Text>Followers</Text>
+        <Text>5</Text>
+      </View>
+      <View style={{ flex: 1, alignItems: "center" }}>
+        <Text>Comments</Text>
+        <Text>10</Text>
+      </View>
+      <TouchableOpacity onPress={() => onPresstoggleDrawer()}>
+        <Image
+          source={require("../../../../assets/images/robot-dev.png")}
+          resizeMode="cover"
+          style={imageProfileStyle}
+        />
+      </TouchableOpacity>
+    </View>
+  );
 };
 
 export default HeaderMarketScreen;

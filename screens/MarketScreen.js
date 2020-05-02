@@ -1,12 +1,16 @@
-import React from "react";
-import { sreenBackgroundColor } from "../constants/Colors";
+import React, { useEffect } from "react";
+import Colors from "../constants/Colors";
 import { SafeAreaView, StyleSheet, Text } from "react-native";
-import CreateMarket from "../components/market/createMarket";
+import HeaderMarketScreen from "../components/market/marketScreen/header";
+import FooterMarketScreen from "../components/market/marketScreen/footer";
+import BodyMarketScreen from "../components/market/marketScreen/body";
 
 const MarketScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.safeAreaViewStyle}>
-      <Text>MarketScreen</Text>
+      <HeaderMarketScreen navigation={navigation} />
+      <BodyMarketScreen navigation={navigation} />
+      <FooterMarketScreen navigation={navigation} />
     </SafeAreaView>
   );
 };
@@ -18,7 +22,7 @@ const styles = StyleSheet.create({
   safeAreaViewStyle: {
     flex: 1,
     alignItems: "flex-end",
-    backgroundColor: sreenBackgroundColor,
+    backgroundColor: Colors.screenBackgroundColor,
   },
 });
 

@@ -3,10 +3,10 @@ import { combineReducers } from "redux";
 // import auth from "./auth";
 // import profile from "./profile";
 // import post from "./post";
+import market from "./market";
+import user from "./user";
 
 export default combineReducers({
-  // alert,
-  // auth,
-  // profile,
-  // post
+  market,
+  user,
 });
