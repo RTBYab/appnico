@@ -4,7 +4,7 @@ const initialState = {};
 import thunk from "redux-thunk";
 import rootReducer from "./reducer";
 import { AsyncStorage } from "react-native";
-import setAuthToken from "../helper/setAuthToken";
+// import setAuthToken from "../helper/setAuthToken";
 import { createStore, applyMiddleware } from "redux";
 import { persistStore, persistReducer } from "redux-persist";
 
@@ -16,7 +16,7 @@ const persistConfig = {
   // Storage Method (React Native)
   storage: AsyncStorage,
   //BlackList
-  blacklist: ["user"],
+  blacklist: ["alert"],
 };
 
 // Middleware: Redux Persist Persisted Reducer

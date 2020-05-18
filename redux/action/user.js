@@ -1,5 +1,5 @@
 import axios from "axios";
-import setAuthToken from "../../helper/setAuthToken";
+// import setAuthToken from "../../helper/setAuthToken";
 import ApiSettings from "../../constants/ApiSettings";
 import {
   LOGOUT,
@@ -11,15 +11,12 @@ import {
   LOGIN_SUCCESS,
   REGISTER_SUCCESS,
 } from "./types";
+import { Alert } from "react-native";
 
 // Load User
 export const loadUser = (id) => async (dispatch) => {
-  if (token) {
-    setAuthToken(token);
-  }
-
   try {
-    const res = await axios.get(ApiSettings.URL.Main + `cuser/${id}`);
+    const res = await axios.get(ApiSettings.URL.Main + `user/cuser/${id}`);
 
     dispatch({
       type: USER_LOADED,
@@ -33,7 +30,7 @@ export const loadUser = (id) => async (dispatch) => {
 };
 
 // Registre User
-export const registerByPhone = (mobileNumber, navigation) => async (
+export const registerByPhone = ({ mobileNumber, navigation }) => async (
   dispatch
 ) => {
   const config = {
@@ -43,23 +40,23 @@ export const registerByPhone = (mobileNumber, navigation) => async (
     },
   };
 
-  const body = JSON.stringify(mobileNumber);
+  const body = JSON.stringify({ mobileNumber });
 
   try {
     const res = await axios.post(
-      ApiSettings.URL.Main + "/signupByPhoneNumber",
+      ApiSettings.URL.Main + "user/signupByPhoneNumber",
       body,
       config
     );
+    navigation.push("VerificationScreen", { data: mobileNumber });
     dispatch({
       type: REGISTER_SUCCESS,
       payload: res.data,
     });
-    const { user } = res.data;
-    dispatch(loadUser(user._id));
-    navigation.Navigate("Vefication");
   } catch (err) {
-    console.log(err.message);
+    const errorMessage = err.response.data.msg;
+
+    Alert.alert("خطا...", errorMessage);
     dispatch({
       type: REGISTER_FAIL,
     });
@@ -67,25 +64,26 @@ export const registerByPhone = (mobileNumber, navigation) => async (
 };
 
 // Login by Phone Number
-export const loginByPhone = (mobile, navigation) => async (dispatch) => {
+export const loginByPhone = ({ mobileNumber, navigation }) => async (
+  dispatch
+) => {
   const config = {
     headers: {
       accept: "appication/json",
       "Content-Type": "application/json",
     },
   };
-  const body = JSON.stringify({ mobile });
-
+  const body = JSON.stringify({ mobileNumber });
   try {
-    const res = await axios.post(
-      "http://localhost:8080/api/mobile/signin",
+    await axios.post(
+      ApiSettings.URL.Main + "user/signinByMobilePhone",
       body,
       config
     );
-
-    navigation.navigate("Verification", { data: mobile });
-  } catch (error) {
-    console.log(error);
+    navigation.navigate("VerificationScreen", { data: mobileNumber });
+  } catch (err) {
+    const errorMessage = err.response.data.msg;
+    Alert.alert("خطا...", errorMessage);
 
     dispatch({
       type: LOGIN_FAIL,
@@ -107,7 +105,7 @@ export const verfication = ({ code, navigation, mobileNumber }) => async (
 
   try {
     const res = await axios.post(
-      "http://localhost:8080/api/mobile/verification/",
+      ApiSettings.URL.Main + "user/validateCode",
       body,
       config
     );
@@ -115,9 +113,9 @@ export const verfication = ({ code, navigation, mobileNumber }) => async (
       type: LOGIN_SUCCESS,
       payload: res.data,
     });
-    const { user } = res.data;
-    dispatch(loadUser(user._id));
-    navigation.push("Home");
+    // const { user } = res.data;
+    // dispatch(loadUser(user._id));
+    navigation.push("Market");
   } catch (error) {
     console.log(error);
 

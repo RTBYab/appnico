@@ -1,12 +1,14 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View } from "react-native";
+import Colors from "../constants/Colors";
+import Settings from "../components/settings";
 import BackArrow from "../components/backArrow";
 
 const SettingScreen = ({ navigation }) => {
   return (
-    <View>
+    <View style={{ backgroundColor: Colors.screenBackgroundColor }}>
       <BackArrow navigation={navigation} />
-      <Text>Setting Screen</Text>
+      <Settings />
     </View>
   );
 };

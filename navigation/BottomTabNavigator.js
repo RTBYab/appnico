@@ -10,6 +10,7 @@ import ImageDetailScreen from "../screens/ImageDetailScreen";
 import LoginScreen from "../screens/LoginScreen";
 import RegisterScreen from "../screens/RegisterScreen";
 import SetOntheMapScreen from "../screens/SetOntheMapScreen";
+import VerificationScreen from "../screens/VerificationScreen";
 import { createStackNavigator } from "@react-navigation/stack";
 import SettingScreen from "../screens/SettingScreen";
 
@@ -41,6 +42,10 @@ const MarketStackScreen = () => (
     <MarketStack.Screen name="MarketScreen" component={MarketScreen} />
     <MarketStack.Screen name="LoginScreen" component={LoginScreen} />
     <MarketStack.Screen name="RegisterScreen" component={RegisterScreen} />
+    <MarketStack.Screen
+      name="VerificationScreen"
+      component={VerificationScreen}
+    />
 
     <MarketStack.Screen
       name="SetOntheMapScreen"

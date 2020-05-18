@@ -1,13 +1,22 @@
 import * as React from "react";
-import { Platform, StatusBar, StyleSheet, SafeAreaView } from "react-native";
+import {
+  Platform,
+  StatusBar,
+  StyleSheet,
+  SafeAreaView,
+  AsyncStorage,
+} from "react-native";
 import { SplashScreen } from "expo";
 import * as Font from "expo-font";
 import { Ionicons } from "@expo/vector-icons";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+// import { loadUser } from "./redux/action/user";
 
 import BottomTabNavigator from "./navigation/BottomTabNavigator";
 import useLinking from "./navigation/useLinking";
+
+import setAuthToken from "./helper/setAuthToken";
 
 //Redux-Persist
 import { Provider } from "react-redux";
@@ -23,6 +32,7 @@ export default function App(props) {
   const { getInitialState } = useLinking(containerRef);
 
   // Load any resources or data that we need prior to rendering the app
+
   React.useEffect(() => {
     async function loadResourcesAndDataAsync() {
       try {
@@ -43,6 +53,10 @@ export default function App(props) {
         setLoadingComplete(true);
         SplashScreen.hide();
       }
+      let cState = store.getState();
+      console.log("cccstate", cState);
+      setAuthToken(cState.user.token);
+      // store.dispatch(loadUser());
     }
 
     loadResourcesAndDataAsync();

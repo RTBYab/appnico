@@ -1,26 +1,27 @@
-import React, { useState, useCallback } from "react";
 import {
-  ScrollView,
-  FlatList,
-  Image,
-  RefreshControl,
-  TouchableWithoutFeedback,
-  TouchableOpacity,
   View,
+  Image,
+  ScrollView,
+  RefreshControl,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
 } from "react-native";
-import Colors from "../../../../constants/Colors";
+//
+// import Colors from "../../../../constants/Colors";
+import { connect } from "react-redux";
+import React, { useState, useCallback } from "react";
+import BodyHelper from "./bodyhelper";
 
+// Refreshing
 function wait(timeout) {
   return new Promise((resolve) => {
     setTimeout(resolve, timeout);
   });
 }
 
-const BodyMarketScreen = ({ navigation }) => {
+const BodyMarketScreen = ({ navigation, market }) => {
   const [refreshing, setRefreshing] = useState(false);
-
   const onPressImage = () => {
-    // console.warn("Pressed");
     navigation.push("ImageDetailScreen");
   };
 
@@ -33,15 +34,14 @@ const BodyMarketScreen = ({ navigation }) => {
     <ScrollView
       style={{
         flex: 1,
-        width: "100%",
-        backgroundColor: "red",
-        padding: "4%",
+        paddingVertical: "4%",
       }}
       refreshControl={
         <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
       }
     >
       <View style={{ flex: 1, flexDirection: "row" }}>
+        <BodyHelper />
         <TouchableWithoutFeedback
           onPress={() => {
             onPressImage();
@@ -57,4 +57,8 @@ const BodyMarketScreen = ({ navigation }) => {
   );
 };
 
-export default BodyMarketScreen;
+const mapStateToProps = (state) => ({
+  market: state.market,
+});
+
+export default connect(mapStateToProps, null)(BodyMarketScreen);

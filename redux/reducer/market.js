@@ -7,13 +7,19 @@ import {
 } from "../action/types";
 
 const initialState = {
-  market: [],
+  market: null,
   loading: true,
 };
 export default function (state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
     case CREATE_MARKET:
+      return {
+        ...state,
+        market: payload,
+        loading: false,
+      };
+    case GET_MARKET_BY_OWNER_ID:
       return {
         ...state,
         market: payload,

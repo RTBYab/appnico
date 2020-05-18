@@ -7,49 +7,46 @@ import {
   GET_MARKET_BY_OWNER_ID,
   GET_MARKET_PROFILE_PHOTO,
 } from "./types";
+import { Alert } from "react-native";
 
-export const createMarket = ({ id, marketData, navigation }) => async (
-  dispatch
-) => {
+export const createMarket = ({ id, navigation, token }) => async (dispatch) => {
   const config = {
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
+      // "x-auth-token": token,
     },
   };
 
-  const body = JSON.stringify(marketData);
-
   try {
     const res = await axios.post(
-      ApiSettings.URL.Main + `store/createstore/${id}`,
-      body,
+      ApiSettings.URL.Main + `market/createMarket/${id}`,
       config
     );
+
     dispatch({
       type: CREATE_MARKET,
       payload: res.data,
     });
-    console.log("createMarketDispatch", dispatch);
-    navigation.navigate("Store");
-  } catch (e) {
-    console.log(e);
-    alert(e);
+
+    navigation.navigate("MarketScreen");
+  } catch (err) {
+    const errorMessage = err.response.data.msg;
+    Alert.alert("خطا...", errorMessage);
   }
 };
 
-export const getStoreByStoreOwner = (id, token) => async (dispatch) => {
+export const getMarketByMarketOwnerId = (userId) => async (dispatch) => {
   const config = {
     headers: {
       Accept: "application/json",
-      Authorization: `bearer ${token}`,
       "Content-Type": "application/json",
     },
   };
 
   try {
     const res = await axios.get(
-      ApiSettings.URL.Main + `/store/storeOwner/${id}`,
+      ApiSettings.URL.Main + `market/getMarketByMarketOwnerId/${userId}`,
       config
     );
 
