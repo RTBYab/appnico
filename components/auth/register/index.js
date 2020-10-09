@@ -47,7 +47,7 @@ const Login = ({ navigation, registerByPhone }) => {
       <Text style={textLabelInput}>شماره موبایل:</Text>
       <View style={secondaryView}>
         <TextInput
-          maxLength={10}
+          maxLength={11}
           multiline={false}
           autoCorrect={false}
           style={textInputStyle}
@@ -57,6 +57,11 @@ const Login = ({ navigation, registerByPhone }) => {
           onChangeText={(number) => setMobileNumber(number)}
           underlineColorAndroid={Colors.screenBackgroundColor}
         />
+        <View 
+         style={{backgroundColor:'#000', width:"76%", height:'0.2%',
+         marginBottom:'3.5%', marginTop:'-0.95%'}}
+         />
+
         <Text style={noticeTextStyle}>
           *لطفا شماره موبایل خود را بدون صفر و با کیبورد انگلیسی وارد کنید
         </Text>

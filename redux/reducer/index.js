@@ -5,9 +5,11 @@ import { combineReducers } from "redux";
 import post from "./post";
 import user from "./user";
 import market from "./market";
+import comment from "./comment";
 
 export default combineReducers({
   user,
   post,
   market,
+  comment,
 });

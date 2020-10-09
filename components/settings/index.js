@@ -1,15 +1,19 @@
 import {
-  Text,
   View,
   Image,
   TextInput,
   ScrollView,
   TouchableOpacity,
+  Dimensions
 } from "react-native";
 import ImgPicker from "../imgPicker";
 import { connect } from "react-redux";
 import React, { useState } from "react";
 import { scrollViewStyle, mainViewStyle, imageStyle } from "./style";
+
+import {Block,Text,Input} from 'galio-framework';
+
+const {mWidth} = Dimensions.get('window')
 
 const Settings = ({ market }) => {
   const [image, setImage] = useState();
@@ -18,7 +22,7 @@ const Settings = ({ market }) => {
     // const { auth, store, uploadStoreImage } = this.props;
     // await uploadStoreImage({ id, token, photo });
   };
-
+console.log('market', market)
   return (
     <ScrollView style={scrollViewStyle}>
       <View style={mainViewStyle}>
@@ -31,10 +35,12 @@ const Settings = ({ market }) => {
             style={imageStyle}
             source={require("../../assets/images/market.png")}
           />
-          <Text>Image</Text>
-        </ImgPicker>
 
-        <Text>نام کسب و کار</Text>
+        </ImgPicker>
+        <TouchableOpacity>
+        <Text>پروفایل فروشگاه</Text>
+        </TouchableOpacity>
+
         <TextInput />
         <Text>توضیحات</Text>
         <TextInput />
@@ -42,6 +48,7 @@ const Settings = ({ market }) => {
           <Text>خروج از حساب کاربری</Text>
         </TouchableOpacity>
       </View>
+    
     </ScrollView>
   );
 };

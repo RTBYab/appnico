@@ -1,64 +1,30 @@
-import {
-  View,
-  Image,
-  ScrollView,
-  RefreshControl,
-  TouchableOpacity,
-  TouchableWithoutFeedback,
-} from "react-native";
-//
-// import Colors from "../../../../constants/Colors";
+import { View } from "react-native";
 import { connect } from "react-redux";
-import React, { useState, useCallback } from "react";
-import BodyHelper from "./bodyhelper";
+import React, { useEffect } from "react";
+import PostBodyHelper from "../../../post/main";
+import { getMarketPosts } from "../../../../redux/action/post";
+import AddBottonHelper from "./helper";
 
-// Refreshing
-function wait(timeout) {
-  return new Promise((resolve) => {
-    setTimeout(resolve, timeout);
-  });
-}
-
-const BodyMarketScreen = ({ navigation, market }) => {
-  const [refreshing, setRefreshing] = useState(false);
-  const onPressImage = () => {
-    navigation.push("ImageDetailScreen");
-  };
-
-  const onRefresh = useCallback(() => {
-    setRefreshing(true);
-    wait(2000).then(() => setRefreshing(false));
-  }, [refreshing]);
-
+const BodyMarketScreen = ({ navigation, getMarketPosts, user }) => {
+  useEffect(() => {
+    if (user && user.user !== null && user.user._id) {
+      getMarketPosts(user.user._id);
+    }
+  }, [getMarketPosts]);
   return (
-    <ScrollView
+    <View
       style={{
         flex: 1,
-        paddingVertical: "4%",
+        marginBottom: "18%",
       }}
-      refreshControl={
-        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-      }
     >
-      <View style={{ flex: 1, flexDirection: "row" }}>
-        <BodyHelper />
-        <TouchableWithoutFeedback
-          onPress={() => {
-            onPressImage();
-          }}
-        >
-          <Image source={require("../../../../assets/images/icon.png")} />
-        </TouchableWithoutFeedback>
-        <TouchableOpacity>
-          <Image source={require("../../../../assets/images/icon.png")} />
-        </TouchableOpacity>
-      </View>
-    </ScrollView>
+      <PostBodyHelper navigation={navigation} />
+      <AddBottonHelper navigation={navigation} />
+    </View>
   );
 };
 
 const mapStateToProps = (state) => ({
-  market: state.market,
+  user: state.user,
 });
-
-export default connect(mapStateToProps, null)(BodyMarketScreen);
+export default connect(mapStateToProps, { getMarketPosts })(BodyMarketScreen);

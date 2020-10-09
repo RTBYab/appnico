@@ -15,14 +15,11 @@ const styles = StyleSheet.create({
     height: width / 4,
   },
   textInputStyle: {
-    width: "80%",
-    padding: "4%",
+    width: "75%",
+    height:'13%',
     textAlign: "right",
     fontFamily: "main",
     fontSize: width / 24,
-    borderRadius: width / 75,
-    marginBottom: width / 30,
-    borderWidth: width / 890,
     borderColor: Colors.mainColor,
   },
   textLabelInput: {

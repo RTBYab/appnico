@@ -32,6 +32,7 @@ const Verification = ({ mobileNumber, navigation, verfication }) => {
     verfication({ code, navigation, mobileNumber });
   };
 
+
   return (
     <KeyboardAvoidingView style={viewStyle}>
       <View style={imageViewStyle}>
@@ -53,6 +54,10 @@ const Verification = ({ mobileNumber, navigation, verfication }) => {
           onChangeText={(number) => setCode(number)}
           underlineColorAndroid={Colors.screenBackgroundColor}
         />
+ <View 
+         style={{backgroundColor:'#000', width:"76%", height:'0.2%',
+         marginBottom:'3.5%', marginTop:'-0.95%'}}
+         />
 
         <TouchableOpacity onPress={() => onPressHandler()} style={buttonStyle}>
           <View>

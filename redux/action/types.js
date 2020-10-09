@@ -5,6 +5,11 @@ export const UPDATE_MARKET_DETAILS = " UPDATE_MARKET_DETAILS";
 export const GET_MARKET_BY_OWNER_ID = "GET_MARKET_BY_OWNER_ID";
 export const GET_MARKET_PROFILE_PHOTO = "  GET_MARKET_PROFILE_PHOTO";
 
+// Comment Actions
+export const GET_COMMENT = "GET_COMMENT";
+export const CREATE_COMMENT = "CREATE_COMMENT";
+export const DELETE_COMMENT = "DELETE_COMMENT";
+export const UPDATE_COMMENT = "UPDATE_COMMENT";
 // User Actions
 export const LOGOUT = "LOGOUT";
 export const LOGIN_FAIL = "LOGIN_FAIL";
@@ -24,3 +29,4 @@ export const GET_POSTS = "GET_POSTS";
 export const UPDATE_POST = "UPDATE_POST";
 export const DELETE_POST = "DELETE_POST";
 export const CREATE_POST = "CREATE_POST";
+export const GET_MARKET_POSTS = "GET_MARKET_POSTS";

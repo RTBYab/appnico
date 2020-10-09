@@ -48,11 +48,13 @@ export const registerByPhone = ({ mobileNumber, navigation }) => async (
       body,
       config
     );
-    navigation.push("VerificationScreen", { data: mobileNumber });
+
     dispatch({
       type: REGISTER_SUCCESS,
       payload: res.data,
     });
+    navigation.navigate("VerificationScreen", { data: mobileNumber });
+    
   } catch (err) {
     const errorMessage = err.response.data.msg;
 
@@ -80,7 +82,9 @@ export const loginByPhone = ({ mobileNumber, navigation }) => async (
       body,
       config
     );
+
     navigation.navigate("VerificationScreen", { data: mobileNumber });
+
   } catch (err) {
     const errorMessage = err.response.data.msg;
     Alert.alert("خطا...", errorMessage);
@@ -115,7 +119,7 @@ export const verfication = ({ code, navigation, mobileNumber }) => async (
     });
     // const { user } = res.data;
     // dispatch(loadUser(user._id));
-    navigation.push("Market");
+    navigation.replace("MarketScreen");
   } catch (error) {
     console.log(error);
 

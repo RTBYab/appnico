@@ -1,13 +1,16 @@
 import React from "react";
 import { View } from "react-native";
+import { connect } from "react-redux";
+import CommentList from "../../commentList/index";
 import { imageProfileStyle, viewStyle } from "./style";
 import { Text, Image, TouchableOpacity } from "react-native";
 
-const HeaderMarketScreen = ({ navigation }) => {
+const HeaderMarketScreen = ({ navigation, comment }) => {
   // For Modal Section [isVisible]
 
   // ImageProfileModal Function
   const onPresstoggleDrawer = () => navigation.toggleDrawer();
+  const commentList = () => navigation.push("CommentList");
 
   return (
     <View style={viewStyle}>
@@ -16,14 +19,15 @@ const HeaderMarketScreen = ({ navigation }) => {
         <Text>4.5</Text>
       </View>
       <View style={{ flex: 1, alignItems: "center" }}>
-        <Text>Followers</Text>
-        <Text>5</Text>
+        <Text>باشگاه مشتریان</Text>
+        <Text>{}</Text>
       </View>
-      <View style={{ flex: 1, alignItems: "center" }}>
-        <Text>Comments</Text>
-        <Text>10</Text>
-      </View>
-      <TouchableOpacity onPress={() => onPresstoggleDrawer()}>
+      <TouchableOpacity onPress={commentList}>
+        {/* <View style={{ flex: 1, alignItems: "center" }}> */}
+        <Text>نظرات</Text>
+        {/* </View> */}
+      </TouchableOpacity>
+      <TouchableOpacity onPress={onPresstoggleDrawer}>
         <Image
           source={require("../../../../assets/images/robot-dev.png")}
           resizeMode="cover"
@@ -34,4 +38,8 @@ const HeaderMarketScreen = ({ navigation }) => {
   );
 };
 
-export default HeaderMarketScreen;
+const mapStateToProps = (state) => ({
+  comment: state.comment,
+});
+
+export default connect(mapStateToProps, null)(HeaderMarketScreen);

@@ -1,15 +1,33 @@
 import React from "react";
 import { View, Text, TouchableOpacity } from "react-native";
-import styles from "./style";
+import {
+  viewStyle,
+  textStyle,
+  bottonStyle,
+  horizontalView,
+  commentTextStyle,
+  bottomViewStyle,
+} from "./style";
 
 const FooterMarketScreen = ({ navigation }) => {
   const mapOnPress = () => navigation.push("SetOntheMapScreen");
+  const commentOnPress = () => navigation.push("CreateComment");
+
   return (
-    <View style={styles.viewStyle}>
-      <TouchableOpacity onPress={() => mapOnPress()}>
-        <Text style={{ color: "#fff" }}>آدرس:خیابان وحدت شمالی</Text>
+    <View style={viewStyle}>
+      <TouchableOpacity onPress={mapOnPress}>
+        <Text style={textStyle}>آدرس:خیابان وحدت شمالی</Text>
       </TouchableOpacity>
-      <Text style={{ color: "#fff" }}>تلفن:۶۶۵۵۷۸۳۲</Text>
+
+      <View style={horizontalView}>
+        <TouchableOpacity style={bottonStyle} onPress={commentOnPress}>
+          <View style={bottomViewStyle}>
+            <Text style={commentTextStyle}>ثبت نظر</Text>
+          </View>
+        </TouchableOpacity>
+
+        <Text style={textStyle}>تلفن:۶۶۵۵۷۸۳۲</Text>
+      </View>
     </View>
   );
 };

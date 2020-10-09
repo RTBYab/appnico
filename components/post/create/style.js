@@ -5,9 +5,6 @@ const { width } = Dimensions.get("window");
 const styles = StyleSheet.create({
   viewStyle: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    width: "100%",
     backgroundColor: colors.screenBackgroundColor,
   },
   imageStyle: {
@@ -15,29 +12,26 @@ const styles = StyleSheet.create({
     height: "40%",
   },
   textStyle: {
-    fontSize: width / 25,
-    fontFamily: "main2",
-    textAlign: "right",
-    color: colors.mainTextColor,
+    textAlign: "center",
+    fontSize: width / 30,
+    fontFamily: "main",
+    color: "#000",
   },
   TouchableOpacityStyle: {
     // justifyContent: "center",
     // alignItems: "center",
-  },
-  loginTouchableOpacity: {
-    height: "8%",
-    justifyContent: "center",
   },
   buttonViewStyle: {
     padding: "3%",
     borderRadius: width / 85,
     backgroundColor: colors.mainColor,
   },
-  textLoginStyle: {
-    fontSize: width / 32,
-    fontFamily: "main",
-    textAlign: "right",
-    color: colors.mainColor,
+  submitButton: {
+    width: "50%",
+    alignSelf: "center",
+    padding: "3%",
+    marginTop: "3%",
+    backgroundColor: "purple",
   },
 });
 

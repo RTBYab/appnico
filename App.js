@@ -54,7 +54,7 @@ export default function App(props) {
         SplashScreen.hide();
       }
       let cState = store.getState();
-      console.log("cccstate", cState);
+      // console.log("cccstate", cState);
       setAuthToken(cState.user.token);
       // store.dispatch(loadUser());
     }

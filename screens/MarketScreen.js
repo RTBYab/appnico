@@ -1,12 +1,16 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Colors from "../constants/Colors";
 import { View, StyleSheet } from "react-native";
-import MarketComponentsBundler from "../components/market/marketScreen/bundler";
+import BodyMarketScreen from "../components/market/marketScreen/body";
+import FooterMarketScreen from "../components/market/marketScreen/footer";
+import HeaderMarketScreen from "../components/market/marketScreen/header";
 
 const MarketScreen = ({ navigation }) => {
   return (
     <View style={styles.safeAreaViewStyle}>
-      <MarketComponentsBundler navigation={navigation} />
+      <HeaderMarketScreen navigation={navigation} />
+      <BodyMarketScreen navigation={navigation} />
+      <FooterMarketScreen navigation={navigation} />
     </View>
   );
 };

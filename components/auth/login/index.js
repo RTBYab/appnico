@@ -11,7 +11,6 @@ import {
   imageViewStyle,
   noticeTextStyle,
 } from "./style";
-import { loginByPhone } from "../../../redux/action/user";
 import {
   View,
   Text,
@@ -22,9 +21,10 @@ import {
   KeyboardAvoidingView,
 } from "react-native";
 import Colors from "../../../constants/Colors";
+import { loginByPhone } from "../../../redux/action/user";
 
 const Login = ({ navigation, loginByPhone }) => {
-  const [mobileNumber, setMobileNumber] = useState("");
+  const [mobileNumber, setMobileNumber] = useState(null);
 
   const onPressHandler = () => {
     if (mobileNumber.length == 0) {
@@ -50,20 +50,25 @@ const Login = ({ navigation, loginByPhone }) => {
       <Text style={textLabelInput}>شماره موبایل:</Text>
       <View style={secondaryView}>
         <TextInput
-          maxLength={10}
+          maxLength={11}
           multiline={false}
           autoCorrect={false}
           style={textInputStyle}
-          returnKeyType="search"
           keyboardType="phone-pad"
           placeholder="۹*********"
           onChangeText={(number) => setMobileNumber(number)}
           underlineColorAndroid={Colors.screenBackgroundColor}
         />
+        
+      <View 
+         style={{backgroundColor:'#000', width:"76%", height:'0.2%',
+         marginBottom:'3.5%', marginTop:'-0.95%'}}
+         />
+
+
         <Text style={noticeTextStyle}>
           *لطفا شماره موبایل خود را بدون صفر و با کیبورد انگلیسی وارد کنید
         </Text>
-
         <TouchableOpacity onPress={() => onPressHandler()} style={buttonStyle}>
           <View>
             <Text style={buttonText}>ورود</Text>

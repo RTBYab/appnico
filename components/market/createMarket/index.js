@@ -1,5 +1,6 @@
 import {
   createMarket,
+  createComment,
   getMarketByMarketOwnerId,
 } from "../../../redux/action/market";
 //
@@ -14,6 +15,7 @@ const CreateMarket = ({
   market,
   navigation,
   createMarket,
+  createComment,
   getMarketByMarketOwnerId,
 }) => {
   // Get Market Details
@@ -26,8 +28,13 @@ const CreateMarket = ({
   }
   // Create Market
   if (market.market !== null && market.market.marketOwner !== undefined) {
+    navigation.navigate("CreateMarket");
+  }
+  // Ckeck If user Exist
+  if (user.user !== null && user.user._id) {
     navigation.replace("MarketScreen");
   }
+
   const createMarketFunction = () => {
     if (user.isAuthenticated === false) {
       return navigation.push("LoginScreen");
@@ -36,6 +43,11 @@ const CreateMarket = ({
     let token = user.token;
     createMarket({ id, navigation, token });
   };
+
+  const submitComment = () => {
+    // createComment({ marketId, navigation });
+  };
+
   return (
     <View style={styles.viewStyle}>
       <Image
@@ -45,10 +57,18 @@ const CreateMarket = ({
       />
       <TouchableOpacity
         style={styles.TouchableOpacity}
-        onPress={() => createMarketFunction()}
+        onPress={createMarketFunction}
       >
         <View style={styles.buttonViewStyle}>
           <Text style={styles.textStyle}>ساخت فروشگاه</Text>
+        </View>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.loginTouchableOpacity}
+        onPress={submitComment}
+      >
+        <View>
+          <Text style={styles.textLoginStyle}>ورود به فروشگاه</Text>
         </View>
       </TouchableOpacity>
     </View>
@@ -62,4 +82,5 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps, {
   getMarketByMarketOwnerId,
   createMarket,
+  createComment,
 })(CreateMarket);

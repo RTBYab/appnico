@@ -7,7 +7,6 @@ const styles = StyleSheet.create({
   viewStyle: {
     flex: 1,
     width: "100%",
-    // alignItems: "center",
     justifyContent: "center",
   },
   imageStyle: {
@@ -15,19 +14,15 @@ const styles = StyleSheet.create({
     height: width / 4,
   },
   textInputStyle: {
-    width: "80%",
-    // height:'100%',
-    padding: "4%",
+    width: "75%",
+    height:'13%',
     textAlign: "right",
     fontFamily: "main",
     fontSize: width / 24,
-    borderRadius: width / 75,
-    marginBottom: width / 75,
-    borderWidth: width / 890,
     borderColor: Colors.mainColor,
   },
   textLabelInput: {
-    marginTop: "9%",
+    marginTop: "7%",
     fontFamily: "main",
     textAlign: "right",
     fontSize: width / 30,
@@ -42,10 +37,11 @@ const styles = StyleSheet.create({
   },
   secondaryView: {
     alignItems: "center",
+    padding: "0.25%",
   },
   buttonStyle: {
     width: "75%",
-    height: "20%",
+    height: "19%",
     alignItems: "center",
     justifyContent: "center",
     borderRadius: width / 75,
