@@ -8,7 +8,7 @@ const SettingScreen = ({ navigation }) => {
   return (
     <View style={{ backgroundColor: Colors.screenBackgroundColor }}>
       <BackArrow navigation={navigation} />
-      <Settings />
+      <Settings navigation={navigation} />
     </View>
   );
 };

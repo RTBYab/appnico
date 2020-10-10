@@ -3,6 +3,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 // Settings and Screens
 import HomeScreen from "../screens/HomeScreen";
+import ProfileScreen from "../screens/ProfileScreen";
 import LoginScreen from "../screens/LoginScreen";
 import TabBarIcon from "../components/TabBarIcon";
 import MarketScreen from "../screens/MarketScreen";
@@ -54,6 +55,7 @@ const MarketStackScreen = () => (
     <MarketStack.Screen name="CreatePost" component={CreatePostScreen} />
     <MarketStack.Screen name="CreateComment" component={CreateCommentScreen} />
     <MarketStack.Screen name="CommentList" component={CommentListScreen} />
+    <MarketStack.Screen name="Profile" component={ProfileScreen} />
 
     <MarketStack.Screen
       name="VerificationScreen"
@@ -72,6 +74,7 @@ const MarketStackScreen = () => (
       name="EditImageDetailScreen"
       component={EditImageDetailScreen}
     />
+
   </MarketStack.Navigator>
 );
 
@@ -86,9 +89,9 @@ const TabsStackScreen = () => (
       name="Home"
       component={HomeStackScreen}
       options={{
-        title: "خانه",
+        title: "جستجو",
         tabBarIcon: ({ focused }) => (
-          <TabBarIcon focused={focused} name="ios-home" />
+          <TabBarIcon focused={focused} name="ios-search" />
         ),
       }}
     />
@@ -104,6 +107,7 @@ const TabsStackScreen = () => (
         ),
       }}
     />
+
   </BottomTab.Navigator>
 );
 
@@ -114,13 +118,13 @@ const SettingStackScreen = () => (
 
     }}
     drawerContentOptions={{
-      labelStyle:{
-        fontFamily:'main',
-        color:'#000'
+      labelStyle: {
+        fontFamily: 'main',
+        color: '#000'
       },
-      
+
     }}
-    
+
     lazy="true"
     drawerPosition="right"
     overlayColor="transparent"
@@ -128,6 +132,7 @@ const SettingStackScreen = () => (
   >
     <SettingStack.Screen name={"..."} component={TabsStackScreen} />
     <SettingStack.Screen name="تنظیمات" component={SettingScreen} />
+    <SettingStack.Screen name="پروفایل فروشگاه" component={ProfileScreen} />
   </SettingStack.Navigator>
 );
 
