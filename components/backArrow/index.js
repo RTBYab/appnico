@@ -1,18 +1,18 @@
 import React from "react";
-import styles from "./style";
+import { viewStyle, ionIconsStyle } from "./styles";
 import { Ionicons } from "@expo/vector-icons";
 import Colors from "../../constants/Colors";
-import { View, TouchableOpacity, Dimensions } from "react-native";
+import { View, Dimensions, TouchableOpacity } from "react-native";
 
 const { width } = Dimensions.get("window");
 
 const BackArrow = ({ navigation }) => {
   return (
-    <View style={styles.viewStyle}>
+    <View style={viewStyle}>
       <TouchableOpacity onPress={navigation.goBack}>
         <Ionicons
           name="ios-arrow-round-back"
-          style={styles.ionIconsStyle}
+          style={ionIconsStyle}
           size={width / 8}
           color={Colors.mainColor}
         />

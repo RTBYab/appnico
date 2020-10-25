@@ -1,7 +1,7 @@
 import React from "react";
 import { View } from "react-native";
 import { connect } from "react-redux";
-import CommentList from "../../commentList/index";
+import CommentList from "../../../comment/commentList";
 import { imageProfileStyle, viewStyle } from "./style";
 import { Text, Image, TouchableOpacity } from "react-native";
 

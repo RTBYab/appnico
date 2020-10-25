@@ -9,13 +9,14 @@ const styles = StyleSheet.create({
     width: "100%",
     justifyContent: "center",
   },
+
   imageStyle: {
     width: width / 4,
     height: width / 4,
   },
   textInputStyle: {
     width: "75%",
-    height:'13%',
+    height: "13%",
     textAlign: "right",
     fontFamily: "main",
     fontSize: width / 24,

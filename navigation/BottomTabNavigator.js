@@ -1,7 +1,9 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createDrawerNavigator } from "@react-navigation/drawer";
+
 // Settings and Screens
+import MapScreen from "../screens/MapScreen";
 import HomeScreen from "../screens/HomeScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import LoginScreen from "../screens/LoginScreen";
@@ -13,7 +15,6 @@ import RegisterScreen from "../screens/RegisterScreen";
 import CreatePostScreen from "../screens/CreatePostScreen";
 import CommentListScreen from "../screens/CommentListScreen";
 import ImageDetailScreen from "../screens/ImageDetailScreen";
-import SetOntheMapScreen from "../screens/SetOntheMapScreen";
 import VerificationScreen from "../screens/VerificationScreen";
 import CreateCommentScreen from "../screens/CreateCommentScreen";
 import EditImageDetailScreen from "../screens/EditImageDetailScreen";
@@ -63,8 +64,8 @@ const MarketStackScreen = () => (
     />
 
     <MarketStack.Screen
-      name="SetOntheMapScreen"
-      component={SetOntheMapScreen}
+      name="MapScreen"
+      component={MapScreen}
     />
     <MarketStack.Screen
       name="ImageDetailScreen"

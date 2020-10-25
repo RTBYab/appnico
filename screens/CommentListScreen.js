@@ -2,7 +2,7 @@ import React from "react";
 import { View } from "react-native";
 import Colors from "../constants/Colors";
 import BackArrow from "../components/backArrow";
-import CommentList from "../components/market/commentList";
+import CommentList from "../components/comment/commentList";
 
 const CommentListScreen = ({ navigation }) => {
   return (
@@ -12,4 +12,5 @@ const CommentListScreen = ({ navigation }) => {
     </View>
   );
 };
+
 export default CommentListScreen;

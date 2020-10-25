@@ -10,7 +10,7 @@ import {
 } from "./style";
 
 const FooterMarketScreen = ({ navigation }) => {
-  const mapOnPress = () => navigation.push("SetOntheMapScreen");
+  const mapOnPress = () => navigation.push("MapScreen");
   const commentOnPress = () => navigation.push("CreateComment");
 
   return (
